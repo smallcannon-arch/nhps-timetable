@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#2f6f4e">
+<title>課表查詢系統</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📅</text></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loader" class="loader"><div class="spinner"></div><p>正在載入課表⋯</p></div>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <a class="brand" href="#/" title="回首頁">
+      <span class="brand-mark">課</span>
+      <span class="brand-txt">
+        <strong id="schoolName">課表查詢</strong>
+        <small id="schoolSub"></small>
+      </span>
+    </a>
+    <div class="topbar-right">
+      <select id="semesterSelect" class="mini-select" aria-label="選擇學期"></select>
+      <button id="printBtn" class="icon-btn" type="button" title="列印目前畫面">🖨 列印</button>
+    </div>
+  </div>
+</header>
+
+<div id="nowBar" class="nowbar"><div class="wrap" id="nowBarText"></div></div>
+
+<main class="wrap" id="main">
+
+  <!-- ══ 查詢首頁 ══════════════════════════════════════════ -->
+  <section id="viewHome" class="view">
+
+    <div class="searchbox">
+      <input id="quickSearch" type="search" autocomplete="off"
+             placeholder="輸入班級、老師或場地，直接查⋯" aria-label="快速搜尋">
+      <div id="quickResult" class="quick-result" hidden></div>
+    </div>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab is-on" data-tab="class"   role="tab">班級</button>
+      <button class="tab"       data-tab="teacher" role="tab">教師</button>
+      <button class="tab"       data-tab="room"    role="tab">場地</button>
+      <button class="tab"       data-tab="sub"     role="tab">代課</button>
+      <button class="tab"       data-tab="all"     role="tab">全校總覽</button>
+    </nav>
+
+    <!-- 班級 -->
+    <div class="panel is-on" data-panel="class">
+      <div id="gradeGroups" class="grade-groups"></div>
+    </div>
+
+    <!-- 教師 -->
+    <div class="panel" data-panel="teacher">
+      <div class="field">
+        <label for="subjectFilter">科目篩選</label>
+        <select id="subjectFilter" class="select"><option value="">全部科目</option></select>
+      </div>
+      <div id="teacherChips" class="chips"></div>
+    </div>
+
+    <!-- 專科教室 -->
+    <div class="panel" data-panel="room">
+      <p class="hint">專科教室、活動場地整週被誰使用，含課後照顧與社團。排活動、借場地前先看這裡。</p>
+      <div id="roomChips" class="chips"></div>
+    </div>
+
+    <!-- 代課 -->
+    <div class="panel" data-panel="sub">
+      <p class="hint">選定時段，馬上看出<strong>哪些老師該節空堂</strong>可支援代課。</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="subDay">星期</label>
+          <select id="subDay" class="select"></select>
+        </div>
+        <div class="field">
+          <label for="subPeriod">節次</label>
+          <select id="subPeriod" class="select"></select>
+        </div>
+        <button id="subGo" class="btn" type="button">查詢</button>
+      </div>
+    </div>
+
+    <!-- 全校總覽 -->
+    <div class="panel" data-panel="all">
+      <p class="hint">一張大表看某天全校各班的課，抽離班級、排代課時很好用。</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="allDay">星期</label>
+          <select id="allDay" class="select"></select>
+        </div>
+        <button id="allGo" class="btn" type="button">查詢</button>
+      </div>
+    </div>
+
+    <p id="dataMeta" class="meta"></p>
+  </section>
+
+  <!-- ══ 結果頁 ════════════════════════════════════════════ -->
+  <section id="viewResult" class="view" hidden>
+    <div class="result-head no-print">
+      <button class="btn ghost" type="button" id="backBtn">← 返回</button>
+      <button class="btn ghost" type="button" id="shareBtn">🔗 複製連結</button>
+    </div>
+    <div id="printArea">
+      <h1 id="resultTitle" class="result-title"></h1>
+      <p id="resultSub" class="result-sub"></p>
+      <div id="resultBody"></div>
+      <p class="print-foot"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot no-print">
+  <div class="wrap">
+    <span id="footSchool"></span>
+    <span class="dot">·</span>
+    <span>課表以教務處公告為準，如有異動請洽教務處</span>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
