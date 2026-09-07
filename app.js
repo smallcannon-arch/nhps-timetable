@@ -617,8 +617,9 @@ function viewCheck() {
 
   // 1. 目前資料狀態
   if (DB && DB.current && DB.current.code === 'local') {
-    out.push(chkRow('info', '目前顯示的是網站內建的備援資料',
-      '課表 ' + DB.lessons.length + ' 筆。接上 Apps Script 之後，改試算表就會即時反映。'));
+    out.push(chkRow('info', '目前讀取網站內建的課表檔',
+      '課表 ' + DB.lessons.length + ' 筆，資料是正確的，只是「靜態」的——' +
+      '改課表得重新上傳檔案。接上 Apps Script 之後，改試算表就會即時反映。'));
   } else if (DB && DB.fallbackReason) {
     out.push(chkRow('bad', '線上資料讀取失敗，已退回備援檔',
       esc(DB.fallbackReason)));
@@ -776,7 +777,7 @@ function buildHome() {
             ' · 專科教室 ' + IDX.rooms.length + ' · 課堂 ' + DB.lessons.length + ' 筆');
   if (DB.updatedAt) meta.push('資料更新：' + DB.updatedAt);
   if (DB.fallbackReason) meta.push('⚠ 線上資料讀取失敗（' + DB.fallbackReason + '），目前顯示的是網站內建的備援課表。');
-  else if (DB.current && DB.current.code === 'local') meta.push('目前使用本機範例資料（尚未設定 API_URL）。');
+  else if (DB.current && DB.current.code === 'local') meta.push('目前讀取網站內建的課表檔（尚未接上 Google 試算表）。');
   $('#dataMeta').innerHTML = meta.map(esc).join('<br>') +
     '<br><a href="#/check">系統檢查 →</a>';
 }
