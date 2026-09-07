@@ -12,7 +12,7 @@ const CONFIG = {
   /* ── 資料來源 ──────────────────────────────────────────── */
   // Google Apps Script 網頁應用程式網址（部署後貼上，結尾是 /exec）
   // 留空字串則直接讀下面的 FALLBACK 靜態檔
-  API_URL: '',
+  API_URL: 'https://script.google.com/macros/s/AKfycbxtkjQIPK_wJQCgj0a96SSiUIqC-wDcwnDCsnOCUXvrsGAkRT2J_cPgExiGkAkWGj16tQ/exec',
 
   // 若前端出現 CORS 錯誤（主機在 GitHub Pages 而 GAS 擋跨網域），改成 true
   USE_JSONP: false,
