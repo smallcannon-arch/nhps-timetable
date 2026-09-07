@@ -202,6 +202,21 @@ main.wrap { padding: 32px 16px 48px; }
 .chip:hover { border-color: var(--brand); color: var(--brand); }
 .chip small { color: var(--text-mute); font-size: .78rem; margin-left: 5px; }
 
+/* 教師清單固定欄寬，姓名與職稱分行，避免長短不一造成錯落。 */
+#teacherChips {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(170px, 100%), 1fr));
+  gap: 12px;
+}
+#teacherChips .chip {
+  display: flex; flex-direction: column; align-items: flex-start;
+  min-width: 0; min-height: 82px; padding: 14px 16px;
+  border-radius: 16px; text-align: left; line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+#teacherChips .chip small { margin: 4px 0 0; }
+#teacherChips .hint { grid-column: 1 / -1; }
+
 /* ── 表單 ─────────────────────────────────────────────────── */
 .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
 .field label { font-size: .84rem; color: var(--text-dim); font-weight: 600; }
