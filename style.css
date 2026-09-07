@@ -374,6 +374,28 @@ table.tt.wide td.row-head {
   .tab { flex: 1 0 auto; padding: 12px 15px; }
 }
 
+/* 螢幕閱讀字級；列印維持原本的 A4 排版。 */
+@media screen {
+  .tab, .btn, .icon-btn, .class-btn, .chip { font-size: 19px; }
+  .searchbox input, .select { font-size: 18px; }
+  .mini-select, .field label, .grade-title, .hint { font-size: 16px; }
+  .class-btn small, .chip small { font-size: 16px; }
+  #teacherChips { grid-template-columns: repeat(auto-fill, minmax(min(210px, 100%), 1fr)); }
+  #teacherChips .chip { min-height: 92px; }
+  .brand-txt small, .grade-title .count, .meta, .foot { font-size: 14px; }
+  .nowbar, .result-sub, .result-sub .pill { font-size: 16px; }
+  table.tt { min-width: 720px; }
+  table.tt thead th, .p-name { font-size: 16px; }
+  table.tt td.cell { padding: 10px 8px; height: 78px; }
+  .c-subject { font-size: 19px; line-height: 1.45; }
+  .c-link { font-size: 16px; }
+  .p-time, .c-room, .c-note, .now-tag { font-size: 14px; }
+  table.tt.wide { min-width: 1100px; }
+  table.tt.wide .c-subject { font-size: 18px; }
+  .list .what, .list .load { font-size: 16px; }
+  .quick-result .kind { font-size: 14px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .view { animation: none; }
   .tab { transition: none; }
