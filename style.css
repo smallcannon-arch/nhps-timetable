@@ -270,7 +270,7 @@ table.tt td.p-head {
 .p-name { font-size: .84rem; font-weight: 700; color: var(--text-dim); }
 .p-time { font-size: .7rem; color: var(--text-mute); font-variant-numeric: tabular-nums; line-height: 1.35; }
 
-table.tt td.cell { padding: 7px 6px; text-align: center; vertical-align: top; height: 62px; }
+table.tt td.cell { padding: 7px 6px; text-align: center; vertical-align: middle; height: 62px; }
 table.tt td.cell.empty { background: repeating-linear-gradient(45deg, transparent, transparent 7px, var(--line-soft) 7px, var(--line-soft) 8px); }
 .c-subject { font-weight: 600; font-size: .93rem; line-height: 1.35; }
 .c-line { margin-top: 2px; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
