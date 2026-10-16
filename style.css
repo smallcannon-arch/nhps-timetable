@@ -286,6 +286,8 @@ table.tt td.cell.empty { background: repeating-linear-gradient(45deg, transparen
   font-size: .68rem; border-radius: 4px;
   background: var(--warn-soft); color: var(--accent); border: 1px solid var(--accent-soft);
 }
+.c-note.c-split { background: var(--brand-soft); color: var(--brand-dark); border-color: var(--line); }
+.c-group { font-size: .73rem; color: var(--text-dim); align-items: baseline; }
 
 tr.now td { background: var(--warn-soft); }
 tr.now td.p-head { box-shadow: inset 3px 0 0 var(--accent); }
@@ -389,7 +391,7 @@ table.tt.wide td.row-head {
   table.tt td.cell { padding: 10px 8px; height: 78px; }
   .c-subject { font-size: 19px; line-height: 1.45; }
   .c-link { font-size: 16px; }
-  .p-time, .c-room, .c-note, .now-tag { font-size: 14px; }
+  .p-time, .c-room, .c-note, .c-group, .now-tag { font-size: 14px; }
   table.tt.wide { min-width: 1100px; }
   table.tt.wide .c-subject { font-size: 18px; }
   .list .what, .list .load { font-size: 16px; }
