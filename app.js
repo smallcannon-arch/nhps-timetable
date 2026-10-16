@@ -390,6 +390,26 @@ function showHome() {
   window.scrollTo(0, 0);
 }
 
+/**
+ * 拆班上課：班級那一列只標「拆班…」，實際授課記在「X年級（分組課）」。
+ * 有分組課資料就列出各組科目與教師（可點），沒有就直接顯示備註文字。
+ */
+function splitGroupHtml(cls, note, d, p) {
+  var g = gradeOf(cls);
+  var groups = g ? (IDX.byClass[g.label + '（分組課）'] || {})[d + '-' + p] : null;
+  var h = '<div class="c-note c-split">拆班分組</div>';
+  if (groups && groups.length) {
+    groups.slice().sort(function (a, b) { return cmpZh(a[3], b[3]); }).forEach(function (G) {
+      h += '<div class="c-line c-group"><span>' + esc(G[3]) + '</span>' +
+           (G[4] ? linkBtn('teacher', G[4]) : '') + '</div>';
+    });
+  } else {
+    var detail = String(note).replace(/^拆班[^：:]*[：:]?/, '').trim();
+    if (detail) h += '<div class="c-room">' + esc(detail) + '</div>';
+  }
+  return h;
+}
+
 /* ── 班級課表 ─────────────────────────────────────────────── */
 function viewClass(cls) {
   var map = IDX.byClass[cls];
@@ -405,7 +425,8 @@ function viewClass(cls) {
       h += '<div class="c-subject">' + esc(L[3]) + '</div>';
       if (L[4]) h += '<div class="c-line">' + linkBtn('teacher', L[4]) + '</div>';
       if (!isHomeRoom(cls, L[5])) h += '<div class="c-room">' + esc(L[5]) + '</div>';
-      if (L[6] && /待補|待確認/.test(L[6])) h += '<div class="c-note">' + esc(L[6]) + '</div>';
+      if (L[6] && /^拆班/.test(L[6])) h += splitGroupHtml(cls, L[6], d, p);
+      else if (L[6] && /待補|待確認/.test(L[6])) h += '<div class="c-note">' + esc(L[6]) + '</div>';
     });
     return { html: h };
   });
